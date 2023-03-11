@@ -1,0 +1,6 @@
+#/bin/bash
+
+logfile=eval_$(date +%Y%m%d)_$(date +%H%M%S)
+
+mkdir log
+bash tgn_test_self_sup.sh >log/$logfile.log
