@@ -254,7 +254,7 @@ def main():
             'neg_sample': NEG_SAMPLE}
 
     # path
-    common_path = f'{Path(__file__).parents[1]}/data/data/'
+    common_path = f'{Path(__file__).parents[1]}/data'
     # ebank_log_file = "{}/ebank_logs/EdgeBank_{}_self_sup.log".format(common_path, network_name)
 
     # load data
