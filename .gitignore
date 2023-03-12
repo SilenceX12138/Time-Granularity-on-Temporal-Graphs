@@ -134,3 +134,4 @@ DG_data/*
 !DG_data/*.zip
 EdgeBank/data
 tgn/data
+.vscode/
