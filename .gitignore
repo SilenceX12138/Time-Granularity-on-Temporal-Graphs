@@ -135,3 +135,5 @@ DG_data/*
 EdgeBank/data
 tgn/data
 .vscode/
+*.zip
+DG_data_coarse
