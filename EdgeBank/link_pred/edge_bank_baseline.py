@@ -102,8 +102,9 @@ def edge_bank_time_window_memory(sources_list, destinations_list, timestamps_lis
     """
     # print("Info: Total number of edges:", len(sources_list))
     if window_mode == 'fixed':
-        window_start_ts = np.quantile(timestamps_list, 1 - memory_span)
+        # window_start_ts = np.quantile(timestamps_list, 1 - memory_span)
         window_end_ts = max(timestamps_list)
+        window_start_ts = window_end_ts - window_size
     elif window_mode == 'avg_reoccur':
         e_ts_l = {}
         for e_idx in range(len(sources_list)):
@@ -260,6 +261,20 @@ def main():
     # load data
     node_features, edge_features, full_data, train_data, val_data, test_data, new_node_val_data, new_node_test_data = \
         get_data(common_path, network_name, val_ratio, test_ratio)
+        
+    # set window size
+    global window_size
+    day = 3600 * 24
+    if network_name in ['wikipedia', 'reddit', 'mooc']:
+        window_size = 5 * day
+    elif network_name in ['lastfm']:
+        window_size = 304 * day
+    elif network_name in ['enron']:
+        window_size = 182 * day
+    elif network_name in ['SocialEvo']:
+        window_size = 40 * day
+    elif network_name in ['uci']:
+        window_size = 32 * day
 
     # generate the train_validation split of the data: needed for constructing the memory for EdgeBank
     tr_val_data = Data(np.concatenate([train_data.sources, val_data.sources]),
@@ -302,4 +317,5 @@ def main():
 
 
 if __name__ == '__main__':
+    window_size = 0
     main()
