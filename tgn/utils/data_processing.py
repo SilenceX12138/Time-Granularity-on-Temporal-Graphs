@@ -66,7 +66,18 @@ def get_data(dataset_name, val_ratio, test_ratio, different_new_nodes_between_va
     if randomize_features:
         node_features = np.random.rand(node_features.shape[0], node_features.shape[1])
 
-    val_time, test_time = list(np.quantile(graph_df.ts, [(1 - val_ratio - test_ratio), (1 - test_ratio)]))
+    # val_time, test_time = list(np.quantile(graph_df.ts, [(1 - val_ratio - test_ratio), (1 - test_ratio)]))
+    day = 3600 * 24
+    if dataset_name in ['wikipedia', 'reddit', 'mooc']:
+        val_time, test_time = [20 * day, 25 * day]
+    elif dataset_name in ['lastfm']:
+        val_time, test_time = [1216 * day, 1520 * day]
+    elif dataset_name in ['enron']:
+        val_time, test_time = [730 * day, 912 * day]
+    elif dataset_name in ['SocialEvo']:
+        val_time, test_time = [160 * day, 200 * day]
+    elif dataset_name in ['uci']:
+        val_time, test_time = [130 * day, 162 * day]
 
     sources = graph_df.u.values
     destinations = graph_df.i.values
