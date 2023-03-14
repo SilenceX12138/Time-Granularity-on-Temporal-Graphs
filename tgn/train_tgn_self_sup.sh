@@ -5,7 +5,7 @@
 #####################################
 n_runs=5
 
-for data in CanParl USLegis enron; do
+for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
   for method in jodie dyrep tgn; do
     if [ "${method}" = "tgn" ]; then
       prefix="${method}_attn"
