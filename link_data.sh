@@ -1,6 +1,8 @@
 granularity="second"
 method="EdgeBank"
 
+rm -r $method/data
+mkdir $method/data
 
 for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
     # link the npy files
