@@ -14,7 +14,7 @@ echo "$(date)"
 
 n_runs=1
 
-for data in CanParl USLegis enron; do
+for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
   for mem_mode in unlim_mem time_window; do
     for neg_sample in rnd hist_nre induc_nre; do
       if [ "${mem_mode}" = "time_window" ]; then
