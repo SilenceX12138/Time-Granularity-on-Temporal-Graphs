@@ -57,7 +57,7 @@ def get_data(dataset_name, val_ratio, test_ratio, different_new_nodes_between_va
     node_features = np.load('./data/ml_{}_node.npy'.format(dataset_name))
 
     # additional for CAW data specifically
-    if dataset_name in ['enron', 'socialevolve', 'uci']:
+    if dataset_name in ['enron', 'SocialEvo', 'uci']:
         node_zero_padding = np.zeros((node_features.shape[0], 172 - node_features.shape[1]))
         node_features = np.concatenate([node_features, node_zero_padding], axis=1)
         edge_zero_padding = np.zeros((edge_features.shape[0], 172 - edge_features.shape[1]))
