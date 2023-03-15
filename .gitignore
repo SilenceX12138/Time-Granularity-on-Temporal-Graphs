@@ -137,3 +137,5 @@ tgn/data
 .vscode/
 *.zip
 DG_data_coarse
+compute_results/*.csv
+compute_results/*.xlsx
