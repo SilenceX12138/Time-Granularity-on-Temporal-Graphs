@@ -1,21 +1,17 @@
 #!/bin/bash
 
-
 #####################################
 # parameters & methods
 #####################################
 prefix="TGAT"
-n_runs=5
-
+n_runs=3
 
 #####################################
 # commands
 #####################################
 
-for data in wikipedia 
-do
-  for neg_sample in rnd
-  do
+for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
+  for neg_sample in rnd hist_nre induc_nre; do
     start_time="$(date -u +%s)"
     echo "****************************************************************************************************************"
     echo "*** Running tgat_run.sh: TGAT method execution ***"
@@ -29,7 +25,7 @@ do
     python tgat_test_trained_model_learn_edge.py -d $data --uniform --n_degree 20 --agg_method attn --attn_mode prod --gpu 0 --n_head 2 --prefix $prefix --n_runs $n_runs --neg_sample $neg_sample
 
     end_time="$(date -u +%s)"
-    elapsed="$(($end_time-$start_time))"
+    elapsed="$(($end_time - $start_time))"
     echo "******************************************************"
     echo "Method: $prefix, Data: $data: Elapsed Time: $elapsed seconds."
     echo "****************************************************************************************************************"
@@ -37,4 +33,3 @@ do
     echo ""
   done
 done
-
