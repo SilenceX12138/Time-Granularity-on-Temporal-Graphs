@@ -139,3 +139,5 @@ tgn/data
 DG_data_coarse
 compute_results/*.csv
 compute_results/*.xlsx
+
+tgat/data/
