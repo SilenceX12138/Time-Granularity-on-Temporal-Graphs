@@ -3,7 +3,7 @@
 #####################################
 # commands
 #####################################
-n_runs=5
+n_runs=3
 
 for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
   for method in jodie dyrep tgn; do

@@ -3,7 +3,7 @@
 #####################################
 # commands
 #####################################
-n_runs=5
+n_runs=3
 
 for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
   for method in jodie dyrep tgn; do
@@ -24,13 +24,13 @@ for data in wikipedia reddit mooc lastfm enron SocialEvo uci; do
 
     if [ "${method}" = "tgn" ]; then
       echo ">>> train_self_supervised; TGN; data: $data"
-      python train_self_supervised.py -d $data --use_memory --prefix "$prefix" --n_runs "$n_runs" --gpu 0
+      python train_self_supervised.py -d $data --use_memory --prefix "$prefix" --n_runs "$n_runs" --gpu 0 --n_epoch 20
     elif [ "${method}" = "jodie" ]; then
       echo ">>> train_self_supervised; jodie_rnn; data: $data"
-      python train_self_supervised.py -d $data --use_memory --memory_updater rnn --embedding_module time --prefix "$prefix" --n_runs "$n_runs" --gpu 0
+      python train_self_supervised.py -d $data --use_memory --memory_updater rnn --embedding_module time --prefix "$prefix" --n_runs "$n_runs" --gpu 0 --n_epoch 20
     elif [ "${method}" = "dyrep" ]; then
       echo ">>> train_self_supervised; dyrep_rnn; data: $data"
-      python train_self_supervised.py -d "$data" --use_memory --memory_updater rnn --dyrep --use_destination_embedding_in_message --prefix "$prefix" --n_runs "$n_runs" --gpu 0
+      python train_self_supervised.py -d "$data" --use_memory --memory_updater rnn --dyrep --use_destination_embedding_in_message --prefix "$prefix" --n_runs "$n_runs" --gpu 0 --n_epoch 20
     elif [ "${method}" = "preproc" ]; then
       echo ">>> Preprocessing data!"
       python utils/preprocess_data.py --data $data
