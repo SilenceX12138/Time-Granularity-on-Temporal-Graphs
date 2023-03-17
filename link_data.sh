@@ -1,5 +1,5 @@
-granularity="second"
-method="EdgeBank"
+granularity="day"
+method="tgn"
 
 rm -r $method/data
 mkdir $method/data
