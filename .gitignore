@@ -141,3 +141,6 @@ compute_results/*.csv
 compute_results/*.xlsx
 
 tgat/data/
+
+archive/
+saved_models
