@@ -1,26 +1,10 @@
-# Towards Better Evaluation for Dynamic Link Prediction
+# Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks
 
-[![NeurIPS](https://img.shields.io/badge/NeurIPS-OpenReview-red)](https://openreview.net/forum?id=1GVpwr2Tfdg)
-[![arXiv](https://img.shields.io/badge/arXiv-2205.12454-b31b1b.svg)](https://arxiv.org/pdf/2207.10128.pdf)
-[![Video Link](https://img.shields.io/static/v1?label=Video&message=YouTube&color=red&logo=youtube)](https://www.youtube.com/watch?v=nGBP_JjKGQI)
-[![Blog Post](https://img.shields.io/badge/Medium-Blog-brightgreen)](https://medium.com/@shenyanghuang1996/towards-better-link-prediction-in-dynamic-graphs-cdb8bb1e24e9)
-
-* All dynamic graph datasets can be downloaded from [here](https://zenodo.org/record/7213796#.Y1cO6y8r30o).
-* Our package is now available on [pip](https://pypi.org/project/dgb/) (*pip install dgb*). Detailed documentations can be found [here](https://complexdata.ml/docs/proj-tg/dgb/start/).
-
-
+> **L45 Project from Xiangjian Jiang (xj265) and Yanyi Pu (yp307).**
 
 ## Introduction
 
-Despite the prevalence of recent success in learning from static graphs, learning from time-evolving graphs remains an open challenge. In this work, we design new, more stringent evaluation procedures for link prediction specific to dynamic graphs, which reflect real-world considerations, to better compare the strengths and weaknesses of methods. First, we create two visualization techniques to understand the reoccurring patterns of edges over time and show that many edges reoccur at later time steps. Based on this observation, we propose a pure memorization baseline called EdgeBank. EdgeBank achieves surprisingly strong performance across multiple settings because easy negative edges are often used in current evaluation setting. To evaluate against more difficult negative edges, we introduce two more challenging negative sampling strategies that improve robustness and better match real-world applications. Lastly, we introduce six new dynamic graph datasets from a diverse set of domains missing from current benchmarks, providing new challenges and opportunities for future research.
-
-
-<p align="center"><img src="./visualization/EdgeBank_&_NS.png" width="65%">
-
-
-The ranking of different methods changes in the proposed negative sampling settings which contains more difficult negative edges. Our proposed baselines (horizontal lines) show competitive performance, in particular in standard setup. 
-
-
+Dynamic Graph Neural Networks (DGNNs) have emerged as the predominant approach for processing dynamic graph-structured data. However, the influence of temporal information on model performance and robustness remains insufficiently explored, particularly regarding how models address prediction tasks in the absence of corresponding temporal information. In this study, we explore the optimal choice of time granularity for training DGNNs on dynamic graphs through extensive experimentation. We examined graphs derived from various domains and compared three different DGNNs to the baseline model across four varied time granularities. We mainly consider the interplay between time granularities, model architectures, and negative sampling strategies to obtain general conclusions. Our experiments reveal that a sophisticated memory mechanism and proper time granularity are crucial for a DGNN to deliver exceptional and robust performance in the dynamic link prediction task. We also discuss drawbacks in selected models and datasets and propose promising directions for future research on the time granularity of temporal graphs.
 
 ## Running the experiments
 
@@ -38,6 +22,7 @@ source install.sh
 All dynamic graph datasets can be downloaded from [here](https://zenodo.org/record/7213796#.Y1cO6y8r30o).
 Then, they can be located in *"DG_data"* folder.
 For conducting any experiments, the required data should be in the **data** folder under each model of interest.
+
 * For example, to train a *TGN* model on *Wikipedia* dataset, we can use the following command to move the edgelist to the right folder:
 ```{bash}
 cp DG_data/wikipedia.csv tgn/data/wikipedia.csv
@@ -48,12 +33,6 @@ Considering the example of *Wikipedia* edgelist, we can use the following comman
 ```{bash}
 # JODIE, DyRep, or TGN
 python tgn/utils/preprocess_data.py --data wikipedia
-
-# TGAT
-python tgat/preprocess_data.py --data wikipedia
-
-# CAWN
-python CAW/preprocess_data.py --data wikipedia
 ```
 
 
@@ -77,14 +56,6 @@ python tgn/train_self_supervised.py -d "$data" --use_memory --memory_updater rnn
 method=tgn
 prefix="${method}_attn"
 python tgn/train_self_supervised.py -d $data --use_memory --prefix "$prefix" --n_runs "$n_runs" --gpu 0
-
-# TGAT
-prefix="TGAT"
-python -u tgat/learn_edge.py -d $data --bs 200 --uniform --n_degree 20 --agg_method attn --attn_mode prod --gpu 0 --n_head 2 --prefix $prefix --n_runs $n_runs --gpu 0
-
-# CAWN
-python CAW/main.py -d $data --pos_dim 108 --bs 32 --n_degree 64 1 --mode i --bias 1e-5 --pos_enc lp --walk_pool sum --seed 0 --n_runs "$n_runs" --gpu 0
-
 ```
 
 * Example of using EdgeBank for dynamic link prediction with standard *random* negative sampler:
@@ -115,31 +86,7 @@ python tgn/tgn_test_trained_model_self_sup.py -d "$data" --use_memory --memory_u
 method=tgn
 python tgn/tgn_test_trained_model_self_sup.py -d $data --use_memory --model $method --neg_sample $neg_sample --n_runs $n_runs --gpu 0
 
-# TGAT
-prefix="TGAT"
-python tgat/tgat_test_trained_model_learn_edge.py -d $data --uniform --n_degree 20 --agg_method attn --attn_mode prod --gpu 0 --n_head 2 --prefix $prefix --n_runs $n_runs --neg_sample $neg_sample
-
-# CAWN
-python CAW/caw_test_trained_model_main.py -d $data --pos_dim 108 --bs 32 --n_degree 64 1 --mode i --bias 1e-5 --pos_enc lp --walk_pool sum --seed 0 --n_runs "$n_runs" --gpu 0 --neg_sample $neg_sample
-
 ```
-
-### Visualizing Dynamic Graphs
-For visualizing the dynamic networks, their edgelists should be located in the *"visualization/data/"* folder.
-
-* For generating **_TEA_** plots:
-```{bash}
-python visualization/TEA_plots.py
-```
-(Different networks can be selected directly in the *"visualization/TEA_plots.py"* file.)
-
-* For generating **_TET_** plots:
-```{bash}
-python visualization/TET_plots.py
-```
-(Different networks can be selected directly in the *"visualization/TET_plots.py"* file.)
-
-The outputs are saved in *"visualization/figs/TEA"* or *"visualization/figs/TET"* folder for the *TEA* or *TET* plots, respectively.
 
 ### Environment Requirements
 * `python >= 3.7`, `PyTorch >= 1.4`
@@ -152,26 +99,3 @@ numpy==1.16.4
 matploblib==3.3.1
 ```
 
-### Maintenance Plan
-Since investigation of temporal graphs has significant impacts on several domains, we plan to develop and extend this project in several ways.
-In particular, we plan on the following directions:
-* Including more temporal graph datasets from even larger selection of domains; e.g. biological, chemical graphs, etc.
-* Including additional temporal graph learning methods as they become available.
-* Including inductive link prediction settings.
-
-
-### Acknowledgment
-We would like to thank the authors of [TGAT](https://github.com/StatsDLMathsRecomSys/Inductive-representation-learning-on-temporal-graphs), [TGN](https://github.com/twitter-research/tgn), and [CAWN](https://github.com/snap-stanford/CAW) for providing access to their projects' code.
-
-
-## Citation
-If this work is useful for your research, please cite us:
-
-```bibtex
-@inproceedings{dgb_neurips_D&B_2022,
-    title={Towards Better Evaluation for Dynamic Link Prediction},
-    author={Poursafaei, Farimah and Huang, Shenyang and Pelrine, Kellin and and Rabbany, Reihaneh},
-    booktitle={Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks},
-    year={2022}
-}
-```
