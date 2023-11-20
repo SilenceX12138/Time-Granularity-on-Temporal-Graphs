@@ -1,7 +1,5 @@
 # Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks
 
-> **L45 Project from Xiangjian Jiang (xj265) and Yanyi Pu (yp307).**
-
 ## Introduction
 
 Dynamic Graph Neural Networks (DGNNs) have emerged as the predominant approach for processing dynamic graph-structured data. However, the influence of temporal information on model performance and robustness remains insufficiently explored, particularly regarding how models address prediction tasks in the absence of corresponding temporal information. In this study, we explore the optimal choice of time granularity for training DGNNs on dynamic graphs through extensive experimentation. We examined graphs derived from various domains and compared three different DGNNs to the baseline model across four varied time granularities. We mainly consider the interplay between time granularities, model architectures, and negative sampling strategies to obtain general conclusions. Our experiments reveal that a sophisticated memory mechanism and proper time granularity are crucial for a DGNN to deliver exceptional and robust performance in the dynamic link prediction task. We also discuss drawbacks in selected models and datasets and propose promising directions for future research on the time granularity of temporal graphs.
