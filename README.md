@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/a-norcliffe/sonode/blob/master/LICENSE) 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 
-Official code for the paper [**Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks**]() accepted at [**TGL workshop @ NeurIPS2023**](https://nips.cc/)
+Official code for the paper [**Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks**]() accepted at [**TGL workshop @ NeurIPS2023**](https://sites.google.com/view/tglworkshop-2023/home)
 
 
 by [Xiangjian Jiang](https://silencex12138.github.io/) and [Yanyi Pu]()
