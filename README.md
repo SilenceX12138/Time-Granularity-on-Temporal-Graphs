@@ -1,8 +1,8 @@
 # Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks
 
-[![Arxiv-Paper]()
-[![Video presentation]() 
-[![Poster](https://img.shields.io/badge/-Poster-yellow)](https://docs.google.com/presentation/d/1G9ElKvj7KEc1SuXRDJjwT_ypuHkEOfRxQ4aqIJ36eYw/edit?usp=sharing)
+[![Arxiv-Paper](https://img.shields.io/badge/Arxiv-Paper-yellow)]()
+[![Video presentation](https://img.shields.io/badge/Youtube-Video%20presentation-red)]() 
+[![Poster](https://img.shields.io/badge/-Poster-yellow)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/a-norcliffe/sonode/blob/master/LICENSE) 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 
