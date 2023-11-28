@@ -3,7 +3,7 @@
 [![Arxiv-Paper](https://img.shields.io/badge/Arxiv-Paper-yellow)](https://arxiv.org/pdf/2311.12255)
 [![Video presentation](https://img.shields.io/badge/Youtube-Video%20presentation-red)](https://recorder-v3.slideslive.com/?share=90377&s=36047afe-b665-4262-b8cf-f74a2d06802e) 
 [![Poster](https://img.shields.io/badge/-Poster-yellow)](https://neurips.cc/media/PosterPDFs/NeurIPS%202023/76330.png?t=1701104142.8590708)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/a-norcliffe/sonode/blob/master/LICENSE) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://img.shields.io/badge/License-MIT-yellow.svg) 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 
 Official code for the paper [**Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks**]() accepted at [**TGL workshop @ NeurIPS2023**](https://sites.google.com/view/tglworkshop-2023/home)
