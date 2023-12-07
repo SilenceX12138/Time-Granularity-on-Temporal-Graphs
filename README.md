@@ -110,3 +110,15 @@ numpy==1.16.4
 matploblib==3.3.1
 ```
 
+## Citation
+
+Please cite our work if you use code from this repo:
+
+```bibtex
+@inproceedings{jiang2023exploring,
+  title={Exploring Time Granularity on Temporal Graphs for Dynamic Link Prediction in Real-world Networks},
+  author={Jiang, Xiangjian and Pu, Yanyi},
+  booktitle={Temporal Graph Learning Workshop@ NeurIPS 2023},
+  year={2023}
+}
+```
